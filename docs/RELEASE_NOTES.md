@@ -1,3 +1,3 @@
-- Initial release with a ready-to-install APK.
+- Added “Video is loading...” during startup and buffering waits.
 - Based on YouTube Android TV **5.30.320 (ARMv7)**.
 - Tested on **Sony Bravia X90H (Android TV 12)**.

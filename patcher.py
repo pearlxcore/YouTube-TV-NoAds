@@ -113,11 +113,11 @@ def main():
     app.set(android + 'logo', '@drawable/noads_icon')
     tree.write(manifest, encoding='utf-8', xml_declaration=True)
     metadata = work / 'apktool.yml'
-    metadata.write_text(metadata.read_text(encoding='utf-8').replace('versionCode: 530320320', 'versionCode: 530320321'), encoding='utf-8')
+    metadata.write_text(metadata.read_text(encoding='utf-8').replace('versionCode: 530320320', 'versionCode: 530320322'), encoding='utf-8')
     artwork(work)
     unsigned = output / 'unsigned.apk'
     aligned = output / 'aligned.apk'
-    signed = output / 'youtube-tv-noads-0.1.0.apk'
+    signed = output / 'youtube-tv-noads-0.1.1.apk'
     print('Build, align, sign and verify the single APK...', flush=True)
     run([args.java, '-jar', apktool, 'b', work, '-o', unsigned], workspace)
     def tool(name):
@@ -162,7 +162,7 @@ def main():
             for name in original.namelist():
                 if name.startswith('assets/') and not name.endswith('/') and original.read(name) != archive.read(name):
                     raise ValueError('Original asset changed: ' + name)
-    record = {'version': '0.1.0', 'package': PACKAGE, 'bytes': len(raw),
+    record = {'version': '0.1.1', 'package': PACKAGE, 'bytes': len(raw),
               'sha256': hashlib.sha256(raw).hexdigest(), 'originalBaseSha256': BASE_HASH,
               'originalArmSplitSha256': ARM_HASH, 'signatureAndAlignmentVerified': True,
               'nativePatch': json.loads((workspace / 'build/native/patch-manifest.json').read_text()),

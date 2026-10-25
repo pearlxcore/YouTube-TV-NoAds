@@ -70,7 +70,7 @@ record = {'status':'LOCAL_BUILD_PENDING_DEVICE_VALIDATION','originalSha256':EXPE
     'entryFileOffset':hex(entry_offset),'hookVa':hex(code_va),'newSegmentVa':hex(new_va),
     'newSegmentFileOffset':hex(new_offset),'segmentSize':segment_size,'codeOffset':code_offset,
     'symbols':{k:hex(v) for k,v in symbols.items()},'changedOriginalByteOffsets':changed,
-    'payloadSha256':hashlib.sha256(b''.join((SOURCE/name).read_bytes() for name in ('response-filter.js','about-marker.js'))).hexdigest(),
-    'payloadParts':{name:hashlib.sha256((SOURCE/name).read_bytes()).hexdigest() for name in ('response-filter.js','about-marker.js')}}
+    'payloadSha256':hashlib.sha256(b''.join((SOURCE/name).read_bytes() for name in ('response-filter.js','about-marker.js','loading-indicator.js'))).hexdigest(),
+    'payloadParts':{name:hashlib.sha256((SOURCE/name).read_bytes()).hexdigest() for name in ('response-filter.js','about-marker.js','loading-indicator.js')}}
 (OUT/'patch-manifest.json').write_text(json.dumps(record,indent=2))
 print(json.dumps(record,indent=2))

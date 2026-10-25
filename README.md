@@ -3,9 +3,9 @@
 YouTube Android TV with ad-filter patches, the original interface, and its own TV tile.
 
 - **YouTube version:** 5.30.320, ARMv7 (`armeabi-v7a`)
-- **Release:** v0.1.0. Complete ad blocking and compatibility with other TVs are not guaranteed.
+- **Release:** v0.1.1. Complete ad blocking and compatibility with other TVs are not guaranteed.
 
-[Download the APK](https://github.com/pearlxcore/YouTube-TV-NoAds/releases/download/v0.1.0/youtube-tv-noads-0.1.0.apk) and install it on your TV. No separate launcher or original YouTube installation is required.
+[Download the APK](https://github.com/pearlxcore/YouTube-TV-NoAds/releases/download/v0.1.1/youtube-tv-noads-0.1.1.apk) and install it on your TV. No separate launcher or original YouTube installation is required.
 
 | TV model | Status |
 | --- | --- |
@@ -14,7 +14,7 @@ YouTube Android TV with ad-filter patches, the original interface, and its own T
 
 ## Build instructions
 
-Just want to install the app? [Download the APK](https://github.com/pearlxcore/YouTube-TV-NoAds/releases/download/v0.1.0/youtube-tv-noads-0.1.0.apk) instead.
+Just want to install the app? [Download the APK](https://github.com/pearlxcore/YouTube-TV-NoAds/releases/download/v0.1.1/youtube-tv-noads-0.1.1.apk) instead.
 
 ### Requirements
 
@@ -32,7 +32,7 @@ python -m pip install -r requirements.txt
 python patcher.py --base C:\APKs\base.apk --arm-split C:\APKs\split_config.armeabi_v7a.apk --apktool C:\Tools\apktool_3.0.3.jar --build-tools C:\Android\build-tools\36.0.0 --output out
 ```
 
-Your APK will be saved as **`out/youtube-tv-noads-0.1.0.apk`**. Building does not install it on your TV.
+Your APK will be saved as **`out/youtube-tv-noads-0.1.1.apk`**. Building does not install it on your TV.
 
 Keep **`out/.signing/`** private and backed up. Reuse that signing key for future app updates. Use a fresh output folder for each build; run `python patcher.py --help` for signing and other options.
 

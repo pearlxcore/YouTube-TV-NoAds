@@ -40,7 +40,7 @@ def observe(machine,address,size,user):
    assert read_word(fake)==0x12345678
    assert read_word(fake+8)&1
    length=read_word(fake+12); pointer=read_word(fake+16)
-   expected_payload=b''.join((ROOT/'patches/patch-source'/name).read_bytes() for name in ('response-filter.js','about-marker.js'))
+   expected_payload=b''.join((ROOT/'patches/patch-source'/name).read_bytes() for name in ('response-filter.js','about-marker.js','loading-indicator.js'))
    assert bytes(uc.mem_read(pointer,length))==expected_payload
    assert read_word(fake+32)==1 and read_word(fake+36)==1
    assert bytes(uc.mem_read(fake+40,2))==b'\0\0'

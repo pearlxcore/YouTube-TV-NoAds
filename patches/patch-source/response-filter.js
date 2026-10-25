@@ -23,6 +23,11 @@
             typeof JSON.__x90hAboutBootstrapV1 === 'function') {
           JSON.__x90hAboutBootstrapV1();
         }
+        if (result.responseContext && result.streamingData && result.videoDetails &&
+            result.playabilityStatus && result.playabilityStatus.status === 'OK' &&
+            typeof JSON.__noadsLoadingV1 === 'function') {
+          JSON.__noadsLoadingV1();
+        }
         var playerMetadata = result.adPlacements || result.adSlots || result.playerAds;
         if (owns.call(result, 'adPlacements')) result.adPlacements = [];
         if (owns.call(result, 'adSlots')) result.adSlots = [];

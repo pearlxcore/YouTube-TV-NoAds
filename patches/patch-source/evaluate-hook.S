@@ -50,5 +50,6 @@ payload_length:
 x90h_payload:
   .incbin "response-filter.js"
   .incbin "about-marker.js"
+  .incbin "loading-indicator.js"
   .byte 0
 x90h_payload_end:

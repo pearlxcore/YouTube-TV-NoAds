@@ -37,20 +37,25 @@ def artwork(work):
         return ImageFont.truetype(str(font_file), size) if font_file else ImageFont.load_default(size=size)
     destination = work / 'res/drawable-nodpi'
     destination.mkdir(exist_ok=True)
-    image = Image.new('RGB', (320, 180), '#141820')
+    # Reuse artwork from the user's decoded original APK; none is distributed.
+    banner_source = work / 'res/drawable/app_banner.png'
+    icon_source = work / 'res/mipmap-xxxhdpi/ic_launcher.png'
+    with Image.open(banner_source) as original:
+        image = original.convert('RGBA')
     draw = ImageDraw.Draw(image)
-    draw.rounded_rectangle((22, 23, 85, 69), radius=10, fill='#c93646')
-    draw.polygon([(47, 32), (47, 60), (69, 46)], fill='white')
-    label_size = 27
-    while draw.textbbox((0, 0), 'YouTube TV NoAds', font=font(label_size))[2] > 278:
-        label_size -= 1
-    draw.text((22, 82), 'YouTube TV NoAds', font=font(label_size), fill='white')
-    draw.text((23, 132), 'EXPERIMENTAL', font=font(16), fill='#a0aec0')
+    size = max(10, round(image.width * 14 / 320))
+    label_font = font(size)
+    width = draw.textbbox((0, 0), 'NoAds', font=label_font)[2]
+    draw.text((round(image.width * 275 / 320) - width, round(image.height * 121 / 180)),
+              'NoAds', font=label_font, fill='#333333')
     image.save(destination / 'noads_banner.png')
-    image = Image.new('RGB', (192, 192), '#141820')
+    with Image.open(icon_source) as original:
+        image = original.convert('RGBA')
     draw = ImageDraw.Draw(image)
-    draw.rounded_rectangle((22, 42, 170, 141), radius=23, fill='#c93646')
-    draw.polygon([(77, 63), (77, 121), (126, 92)], fill='white')
+    label_font = font(max(10, round(image.width * 0.075)))
+    box = draw.textbbox((0, 0), 'NoAds', font=label_font)
+    draw.text(((image.width - (box[2] - box[0])) // 2, round(image.height * 0.76)),
+              'NoAds', font=label_font, fill='#333333')
     image.save(destination / 'noads_icon.png')
 
 def main():

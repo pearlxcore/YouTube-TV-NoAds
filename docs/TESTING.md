@@ -36,3 +36,7 @@ No YouTube-served ad was identified in the inspected playback frames, but sampli
 Fresh Google sign-in, Cast, subscriptions/playlists, sleep/resume and other TV models were not independently certified for this release. Existing profile retention is not proof that a fresh login works. Audio output was not independently listened to during this session. Older X90H testing confirmed picture/audio, seeking, captions, autoplay and restart in selected paths; that history does not replace testing on another device.
 
 Device screenshots, account details, IP addresses, raw logs, APKs and signing files are kept out of this repository and its release assets.
+
+## Same-version artwork refresh
+
+The v0.1.0 source release was refreshed to reuse the user's original YouTube banner and icon with a small **NoAds** label, replacing the previous custom artwork and its EXPERIMENTAL text. Package identity, version code, native patch and app logic remain unchanged. The refreshed APK passed a full local build, signing/alignment checks and byte comparisons for DEX, native libraries and original assets. Its new artwork was inspected locally; the installed TV tile was not updated or retested for this cosmetic refresh. The device results above refer to the initially tested v0.1.0 candidate. The refreshed tag and source archive replace the earlier v0.1.0 snapshot; use the new release checksum.

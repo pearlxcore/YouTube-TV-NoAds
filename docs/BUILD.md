@@ -31,6 +31,8 @@ python patcher.py --base C:\APKs\base.apk --arm-split C:\APKs\split_config.armea
 
 The output is **`out/youtube-tv-noads-0.1.0.apk`**: one app with its own **YouTube TV NoAds** tile. No companion launcher is needed. The internal package stays `local.x90h.youtube.tv.experimental`, separately from official YouTube. A local `build-manifest.json` records the inputs and output hash.
 
+The banner and icon reuse artwork from your original APK and add a small **NoAds** label. The original artwork is not included in this source repository.
+
 The patcher creates a local development signing key and password under `out/.signing/`. Keep both private and back them up. Reuse the same key for future updates with `--keystore`, `--ks-password-file`, and `--key-alias`. A different signature cannot update an existing installation; do not clear or uninstall another installation to work around that without considering its data. Use a fresh `--output` directory for each build: the patcher refuses to delete or overwrite an existing work directory.
 
 Building does not connect to a TV or install anything. Install your locally built APK yourself using Android TV's normal sideloading or ADB workflow, for example `adb -s YOUR_TV_ADDRESS install -r out/youtube-tv-noads-0.1.0.apk` on an already authorised device.

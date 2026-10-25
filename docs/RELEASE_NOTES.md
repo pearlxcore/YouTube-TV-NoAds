@@ -1,6 +1,7 @@
 First experimental source-only release of **YouTube TV NoAds**.
 
 - Builds one locally signed APK with a **YouTube TV NoAds** Android TV tile.
+- Refreshed under the same v0.1.0 version: reuses the original APK's YouTube artwork with a small **NoAds** label. No extra artwork is distributed.
 - Original YouTube Android TV **5.30.320 / ARMv7** profile only; mismatched APKs are rejected.
 - Tested on **Sony Bravia X90H / Android TV 12**.
 - Includes our patcher, local response filter, native hook, build instructions and source checks.

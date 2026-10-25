@@ -1,4 +1,4 @@
-/* Experimental local payload. Synthetic tests do not establish TV compatibility. */
+/* Local response filter. Synthetic checks do not establish TV compatibility. */
 (function () {
   'use strict';
   try {

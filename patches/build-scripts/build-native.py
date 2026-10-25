@@ -65,7 +65,7 @@ with output.open('rb') as stream:
     assert check.num_segments() == count+1
     new_load = list(check.iter_segments())[-1]
     assert new_load['p_flags'] == 5 and new_load['p_vaddr'] == new_va
-record = {'status':'EXPERIMENTAL_UNTESTED_ON_ANDROID','originalSha256':EXPECTED,
+record = {'status':'LOCAL_BUILD_PENDING_DEVICE_VALIDATION','originalSha256':EXPECTED,
     'patchedSha256':hashlib.sha256(raw).hexdigest(),'elfEntry':hex(ENTRY),
     'entryFileOffset':hex(entry_offset),'hookVa':hex(code_va),'newSegmentVa':hex(new_va),
     'newSegmentFileOffset':hex(new_offset),'segmentSize':segment_size,'codeOffset':code_offset,

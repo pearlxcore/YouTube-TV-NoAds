@@ -12,4 +12,4 @@ APK SHA-256: `f61797bad04373b712703b0474876b7786f5b783856732eceda62b6fb386cba2`.
 
 No private signing key, device logs or account information is included.
 
-Ad filtering and device compatibility remain experimental. One pause of unknown cause was observed during the mixed playback/functionality session. This release does not claim complete ad suppression or long-term stability. See [test results](https://github.com/pearlxcore/YouTube-TV-NoAds/blob/v0.1.0/docs/TESTING.md) and [build instructions](https://github.com/pearlxcore/YouTube-TV-NoAds/blob/v0.1.0/docs/BUILD.md).
+See the [TV model/status table](https://github.com/pearlxcore/YouTube-TV-NoAds/blob/v0.1.0/README.md) and [build instructions](https://github.com/pearlxcore/YouTube-TV-NoAds/blob/v0.1.0/docs/BUILD.md). Complete ad suppression and compatibility with other TVs are not guaranteed.

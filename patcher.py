@@ -162,7 +162,7 @@ def main():
             for name in original.namelist():
                 if name.startswith('assets/') and not name.endswith('/') and original.read(name) != archive.read(name):
                     raise ValueError('Original asset changed: ' + name)
-    record = {'version': '0.1.0-experimental', 'package': PACKAGE, 'bytes': len(raw),
+    record = {'version': '0.1.0', 'package': PACKAGE, 'bytes': len(raw),
               'sha256': hashlib.sha256(raw).hexdigest(), 'originalBaseSha256': BASE_HASH,
               'originalArmSplitSha256': ARM_HASH, 'signatureAndAlignmentVerified': True,
               'nativePatch': json.loads((workspace / 'build/native/patch-manifest.json').read_text()),

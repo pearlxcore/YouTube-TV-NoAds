@@ -31,7 +31,7 @@ node tests/about-marker.cjs
 python patcher.py --base C:\APKs\base.apk --arm-split C:\APKs\split_config.armeabi_v7a.apk --apktool C:\Tools\apktool_3.0.3.jar --build-tools C:\Android\build-tools\36.0.0 --output out
 ```
 
-The output is **`out/youtube-tv-noads-0.1.0.apk`**: one app with its own **YouTube TV NoAds** tile. No companion launcher is needed. The internal package stays `local.x90h.youtube.tv.experimental`, separately from official YouTube. A local `build-manifest.json` records the inputs and output hash.
+The output is **`out/youtube-tv-noads-0.1.0.apk`**: one app with its own **YouTube TV NoAds** tile. No companion launcher is needed. The existing internal package identity is retained for in-place updates and remains separate from official YouTube. A local `build-manifest.json` records the inputs and output hash.
 
 The banner and icon reuse artwork from your original APK and add a small **NoAds** label. The original artwork is not included in this source repository.
 

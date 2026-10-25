@@ -99,7 +99,7 @@ def main():
     os.environ['YT_NOADS_WSL_DISTRO'] = args.wsl_distro
     print('Decode original APK; compile and test the hash-bound native patch...', flush=True)
     run([args.java, '-jar', apktool, 'd', base, '-o', workspace / 'analysis/apktool/base'], workspace)
-    for script in ['build-native.py', 'test-hook.py', 'prepare-apk.py', 'apply-service-failure-fix.py']:
+    for script in ['build-native.py', 'test-hook.py', 'prepare-apk.py', 'apply-service-failure-fix.py', 'apply-primes-privacy.py']:
         run([sys.executable, workspace / 'patches/build-scripts' / script], workspace)
     work = workspace / 'build/apk-work'
     android = '{http://schemas.android.com/apk/res/android}'
@@ -113,11 +113,11 @@ def main():
     app.set(android + 'logo', '@drawable/noads_icon')
     tree.write(manifest, encoding='utf-8', xml_declaration=True)
     metadata = work / 'apktool.yml'
-    metadata.write_text(metadata.read_text(encoding='utf-8').replace('versionCode: 530320320', 'versionCode: 530320322'), encoding='utf-8')
+    metadata.write_text(metadata.read_text(encoding='utf-8').replace('versionCode: 530320320', 'versionCode: 530320323'), encoding='utf-8')
     artwork(work)
     unsigned = output / 'unsigned.apk'
     aligned = output / 'aligned.apk'
-    signed = output / 'youtube-tv-noads-0.1.1.apk'
+    signed = output / 'youtube-tv-noads-0.1.2.apk'
     print('Build, align, sign and verify the single APK...', flush=True)
     run([args.java, '-jar', apktool, 'b', work, '-o', unsigned], workspace)
     def tool(name):
@@ -162,11 +162,13 @@ def main():
             for name in original.namelist():
                 if name.startswith('assets/') and not name.endswith('/') and original.read(name) != archive.read(name):
                     raise ValueError('Original asset changed: ' + name)
-    record = {'version': '0.1.1', 'package': PACKAGE, 'bytes': len(raw),
+    record = {'version': '0.1.2', 'package': PACKAGE, 'bytes': len(raw),
+              'optionalPrimesDispatchDisabled': True,
               'sha256': hashlib.sha256(raw).hexdigest(), 'originalBaseSha256': BASE_HASH,
               'originalArmSplitSha256': ARM_HASH, 'signatureAndAlignmentVerified': True,
               'nativePatch': json.loads((workspace / 'build/native/patch-manifest.json').read_text()),
               'notice': 'Local build checks passed. Not a runtime or complete ad-suppression guarantee.'}
+    record['primesPrivacyPatch'] = json.loads((workspace / 'build/primes-privacy-patch.json').read_text())
     (output / 'build-manifest.json').write_text(json.dumps(record, indent=2), encoding='utf-8')
     print('Built ' + str(signed))
     print('SHA-256 ' + record['sha256'])

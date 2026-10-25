@@ -1,3 +1,4 @@
-- Added “Video is loading...” during startup and buffering waits.
+- Disabled one optional Google performance-metrics reporting path.
+- Other telemetry remains; reduced network traffic is unverified.
 - Based on YouTube Android TV **5.30.320 (ARMv7)**.
 - Tested on **Sony Bravia X90H (Android TV 12)**.

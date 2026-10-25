@@ -1,0 +1,3 @@
+* text=auto
+# Native assembly embeds the exact payload bytes; do not rewrite line endings.
+patches/patch-source/* -text

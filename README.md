@@ -13,3 +13,8 @@ YouTube Android TV with ad-filter patches, the original interface, and its own T
 | Other Android TV models | Not verified |
 
 [Build instructions](docs/BUILD.md)
+
+## ❤️ Support My Work
+[![ko-fi](https://github.com/user-attachments/assets/93da7a03-e740-4f79-9add-8b3741239b2f)](https://ko-fi.com/R6R524N7X)
+
+[![paypal](https://user-images.githubusercontent.com/36906814/102657760-39d1ce00-41b1-11eb-96fe-c10e2d9b3f39.png)](https://www.paypal.com/paypalme/pearlxcoree)

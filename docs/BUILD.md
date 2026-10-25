@@ -1,6 +1,8 @@
 # Build locally
 
-Only the original YouTube Android TV **5.30.320 ARMv7** profile below is supported. Other versions, architectures and repackaged APKs are rejected. Obtain your own original APKs from your device; this project does not supply or download them.
+Building from source is optional: a precompiled patched APK is available in [Releases](https://github.com/pearlxcore/YouTube-TV-NoAds/releases/tag/v0.1.0).
+
+For source builds, only the original YouTube Android TV **5.30.320 ARMv7** profile below is supported. Other versions, architectures and repackaged APKs are rejected. Obtain your own original APKs from your device; the patcher does not supply or download those unmodified inputs.
 
 | Input | SHA-256 |
 | --- | --- |
@@ -32,6 +34,8 @@ python patcher.py --base C:\APKs\base.apk --arm-split C:\APKs\split_config.armea
 The output is **`out/youtube-tv-noads-0.1.0.apk`**: one app with its own **YouTube TV NoAds** tile. No companion launcher is needed. The internal package stays `local.x90h.youtube.tv.experimental`, separately from official YouTube. A local `build-manifest.json` records the inputs and output hash.
 
 The banner and icon reuse artwork from your original APK and add a small **NoAds** label. The original artwork is not included in this source repository.
+
+The MIT license covers this project's independently written code. Upstream components packaged in the APK retain their respective licenses and notices.
 
 The patcher creates a local development signing key and password under `out/.signing/`. Keep both private and back them up. Reuse the same key for future updates with `--keystore`, `--ks-password-file`, and `--key-alias`. A different signature cannot update an existing installation; do not clear or uninstall another installation to work around that without considering its data. Use a fresh `--output` directory for each build: the patcher refuses to delete or overwrite an existing work directory.
 

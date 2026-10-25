@@ -1,6 +1,6 @@
 # Test results
 
-Test date: **2026-10-26**. Device: **Sony Bravia X90H / Android TV 12**, ARMv7. YouTube base version: **5.30.320**. Release classification: **experimental prerelease**.
+Test date: **2026-10-26**. Device: **Sony Bravia X90H / Android TV 12**, ARMv7. YouTube base version: **5.30.320**. GitHub release classification: **normal release**. This label does not extend the test coverage described here.
 
 ## Build checks
 
@@ -35,7 +35,7 @@ No YouTube-served ad was identified in the inspected playback frames, but sampli
 
 Fresh Google sign-in, Cast, subscriptions/playlists, sleep/resume and other TV models were not independently certified for this release. Existing profile retention is not proof that a fresh login works. Audio output was not independently listened to during this session. Older X90H testing confirmed picture/audio, seeking, captions, autoplay and restart in selected paths; that history does not replace testing on another device.
 
-Device screenshots, account details, IP addresses, raw logs, APKs and signing files are kept out of this repository and its release assets.
+Device screenshots, account details, IP addresses, raw logs and private signing files are kept out of the repository and release assets. The precompiled patched APK is distributed as a release asset, alongside the source archive and checksums; APKs are not committed to the source tree.
 
 ## Same-version artwork refresh
 

@@ -5,7 +5,7 @@ YouTube Android TV with ad-filter patches, the original interface, and its own T
 - **YouTube version:** 7.30.301, ARMv7 (`armeabi-v7a`)
 - **Release:** [v7.30.301](https://github.com/pearlxcore/YouTube-TV-NoAds/releases/tag/v7.30.301). Complete ad blocking and compatibility with other TVs are not guaranteed.
 
-[Download the APK](https://github.com/pearlxcore/YouTube-TV-NoAds/releases/download/v7.30.301/youtube-tv-noads-7.30.301.apk) and install it on your TV. No separate launcher or original YouTube installation is required.
+[Download the APK from the release page](https://github.com/pearlxcore/YouTube-TV-NoAds/releases/tag/v7.30.301) and install it on your TV. No separate launcher or original YouTube installation is required.
 
 ## Compatibility
 
@@ -37,7 +37,7 @@ Disables one optional performance-metrics reporting path. Other telemetry remain
 
 ## Build instructions
 
-Just want to install the app? [Download the APK](https://github.com/pearlxcore/YouTube-TV-NoAds/releases/download/v7.30.301/youtube-tv-noads-7.30.301.apk) instead.
+Just want to install the app? [Download the APK from the release page](https://github.com/pearlxcore/YouTube-TV-NoAds/releases/tag/v7.30.301) instead.
 
 ### Requirements
 

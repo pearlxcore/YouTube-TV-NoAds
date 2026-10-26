@@ -7,11 +7,27 @@ YouTube Android TV with ad-filter patches, the original interface, and its own T
 
 [Download the APK](https://github.com/pearlxcore/YouTube-TV-NoAds/releases/download/v7.30.301/youtube-tv-noads-7.30.301.apk) and install it on your TV. No separate launcher or original YouTube installation is required.
 
-| TV model | Android TV | Tested YouTube version | Status |
-| --- | --- | --- | --- |
-| Sony Bravia X90H | 12 | [7.30.301](https://github.com/pearlxcore/YouTube-TV-NoAds/releases/tag/v7.30.301) | Playback and About marker work; no ads seen across several videos |
-| TCL P8L | 14 | [5.30.320](https://github.com/pearlxcore/YouTube-TV-NoAds/releases/tag/v0.1.2) (previous base) | User reports playback works with no ads; minor playback behavior differences. 7.30.301 not tested |
-| Other models | — | — | Not verified |
+<table>
+  <thead>
+    <tr><th>YouTube version</th><th>TV model</th><th>Android TV</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://github.com/pearlxcore/YouTube-TV-NoAds/releases/tag/v7.30.301">7.30.301</a></td>
+      <td>Sony Bravia X90H</td><td>12</td>
+      <td>Playback and About marker work; no ads seen across several videos</td>
+    </tr>
+    <tr>
+      <td rowspan="2" valign="top"><a href="https://github.com/pearlxcore/YouTube-TV-NoAds/releases/tag/v0.1.2">5.30.320</a></td>
+      <td>Sony Bravia X90H</td><td>12</td>
+      <td>Playback and navigation work</td>
+    </tr>
+    <tr>
+      <td>TCL P8L</td><td>14</td>
+      <td>User reports playback works with no ads; minor playback behavior differences</td>
+    </tr>
+  </tbody>
+</table>
 
 Disables one optional performance-metrics reporting path. Other telemetry remains; [privacy details](docs/PRIVACY.md).
 

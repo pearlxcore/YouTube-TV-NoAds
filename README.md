@@ -15,16 +15,16 @@ YouTube Android TV with ad-filter patches, the original interface, and its own T
     <tr>
       <td><a href="https://github.com/pearlxcore/YouTube-TV-NoAds/releases/tag/v7.30.301">7.30.301</a></td>
       <td>Sony Bravia X90H</td><td>12</td>
-      <td>Playback and About marker work; no ads seen across several videos</td>
+      <td>Working</td>
     </tr>
     <tr>
       <td rowspan="2" valign="top"><a href="https://github.com/pearlxcore/YouTube-TV-NoAds/releases/tag/v0.1.2">5.30.320</a></td>
       <td>Sony Bravia X90H</td><td>12</td>
-      <td>Playback and navigation work</td>
+      <td>Working</td>
     </tr>
     <tr>
       <td>TCL P8L</td><td>14</td>
-      <td>User reports playback works with no ads; minor playback behavior differences</td>
+      <td>Working</td>
     </tr>
   </tbody>
 </table>

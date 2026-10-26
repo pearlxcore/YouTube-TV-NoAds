@@ -7,6 +7,10 @@ YouTube Android TV with ad-filter patches, the original interface, and its own T
 
 [Download the APK](https://github.com/pearlxcore/YouTube-TV-NoAds/releases/download/v7.30.301/youtube-tv-noads-7.30.301.apk) and install it on your TV. No separate launcher or original YouTube installation is required.
 
+## Compatibility
+
+Reported results for the versions and TVs tested.
+
 <table>
   <thead>
     <tr><th>YouTube version</th><th>TV model</th><th>Android TV</th><th>Status</th></tr>

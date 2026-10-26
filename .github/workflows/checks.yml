@@ -18,4 +18,5 @@ jobs:
       - run: python -m unittest discover -s tests
       - run: node patches/build-scripts/test-payload.cjs
       - run: node tests/about-marker.cjs
+      - run: node tests/about-marker-730301.cjs
       - run: node tests/loading-indicator.cjs

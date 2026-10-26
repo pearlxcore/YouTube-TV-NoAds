@@ -1,3 +1,4 @@
 pyelftools
 Pillow
 unicorn
+capstone>=5,<6

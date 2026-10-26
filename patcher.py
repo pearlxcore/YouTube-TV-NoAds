@@ -14,6 +14,7 @@ import zipfile
 
 BASE_HASH = '418826127ad7a1c0ebfc607d841f8998c91d2b660478e9959b3c70a705a07f3f'
 ARM_HASH = '5ca175e0045ecc7e4aa567de4bebe2c83723dcb8833c4dd9b67868eeef2cc4da'
+NEW_BASE_HASH = 'c439440a636fabe0b202e2acbe29643b9e09327df797490441e1731a591fddc7'
 PACKAGE = 'local.x90h.youtube.tv.experimental'
 ROOT = Path(__file__).resolve().parent
 
@@ -26,7 +27,7 @@ def run(command, cwd=None):
 def checked_input(path, digest):
     path = path.resolve(strict=True)
     if hashlib.sha256(path.read_bytes()).hexdigest() != digest:
-        raise ValueError('Unsupported APK hash: ' + path.name + '. Only the documented 5.30.320 profile is supported.')
+        raise ValueError('Unsupported APK hash: ' + path.name + '. Select the matching supported source profile.')
     return path
 
 def artwork(work):
@@ -61,7 +62,8 @@ def artwork(work):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--base', required=True, type=Path)
-    parser.add_argument('--arm-split', required=True, type=Path)
+    parser.add_argument('--profile', choices=['5.30.320', '7.30.301'], default='7.30.301', help='Source YouTube version; default 7.30.301, legacy 5.30.320 remains available')
+    parser.add_argument('--arm-split', type=Path, help='Required for the 5.30.320 profile only')
     parser.add_argument('--apktool', required=True, type=Path, help='Existing Apktool 3.0.3 JAR')
     parser.add_argument('--build-tools', required=True, type=Path, help='Existing Android SDK Build Tools directory')
     parser.add_argument('--output', type=Path, default=Path('out'))
@@ -74,8 +76,13 @@ def main():
     args = parser.parse_args()
     if sys.flags.optimize:
         raise ValueError('Run without -O: native profile validation requires assertions.')
-    base = checked_input(args.base, BASE_HASH)
-    arm = checked_input(args.arm_split, ARM_HASH)
+    newer = args.profile == '7.30.301'
+    base = checked_input(args.base, NEW_BASE_HASH if newer else BASE_HASH)
+    if not newer and not args.arm_split:
+        raise ValueError('--arm-split is required for 5.30.320')
+    if newer and args.arm_split:
+        raise ValueError('7.30.301 expects the supported standalone ARMv7 APK, without --arm-split')
+    arm = base if newer else checked_input(args.arm_split, ARM_HASH)
     apktool = args.apktool.resolve(strict=True)
     sdk = args.build_tools.resolve(strict=True)
     output = args.output.resolve()
@@ -90,7 +97,8 @@ def main():
         (workspace / relative).mkdir(parents=True, exist_ok=True)
     shutil.copytree(ROOT / 'patches', workspace / 'patches')
     shutil.copy2(base, workspace / 'original/base.apk')
-    shutil.copy2(arm, workspace / 'original/splits/split_config.armeabi_v7a.apk')
+    if not newer:
+        shutil.copy2(arm, workspace / 'original/splits/split_config.armeabi_v7a.apk')
     with zipfile.ZipFile(arm) as archive:
         for name in archive.namelist():
             parts = name.split('/')
@@ -99,7 +107,9 @@ def main():
     os.environ['YT_NOADS_WSL_DISTRO'] = args.wsl_distro
     print('Decode original APK; compile and test the hash-bound native patch...', flush=True)
     run([args.java, '-jar', apktool, 'd', base, '-o', workspace / 'analysis/apktool/base'], workspace)
-    for script in ['build-native.py', 'test-hook.py', 'prepare-apk.py', 'apply-service-failure-fix.py', 'apply-primes-privacy.py']:
+    scripts = (['build-native-730301.py', 'test-native-730301.py', 'prepare-apk.py', 'apply-java-730301.py'] if newer else
+               ['build-native.py', 'test-hook.py', 'prepare-apk.py', 'apply-service-failure-fix.py', 'apply-primes-privacy.py'])
+    for script in scripts:
         run([sys.executable, workspace / 'patches/build-scripts' / script], workspace)
     work = workspace / 'build/apk-work'
     android = '{http://schemas.android.com/apk/res/android}'
@@ -113,11 +123,14 @@ def main():
     app.set(android + 'logo', '@drawable/noads_icon')
     tree.write(manifest, encoding='utf-8', xml_declaration=True)
     metadata = work / 'apktool.yml'
-    metadata.write_text(metadata.read_text(encoding='utf-8').replace('versionCode: 530320320', 'versionCode: 530320323'), encoding='utf-8')
+    original_code, patched_code = ('730301320', '730301322') if newer else ('530320320', '530320323')
+    metadata_text = metadata.read_text(encoding='utf-8')
+    assert metadata_text.count('versionCode: ' + original_code) == 1
+    metadata.write_text(metadata_text.replace('versionCode: ' + original_code, 'versionCode: ' + patched_code), encoding='utf-8')
     artwork(work)
     unsigned = output / 'unsigned.apk'
     aligned = output / 'aligned.apk'
-    signed = output / 'youtube-tv-noads-0.1.2.apk'
+    signed = output / ('youtube-tv-noads-7.30.301.apk' if newer else 'youtube-tv-noads-0.1.2.apk')
     print('Build, align, sign and verify the single APK...', flush=True)
     run([args.java, '-jar', apktool, 'b', work, '-o', unsigned], workspace)
     def tool(name):
@@ -151,8 +164,8 @@ def main():
         if archive.getinfo('resources.arsc').compress_type != zipfile.ZIP_STORED:
             raise ValueError('resources.arsc must be uncompressed')
         native = [name for name in archive.namelist() if name.startswith('lib/') and name.endswith('.so')]
-        if len(native) != 8:
-            raise ValueError('Expected eight original ARM libraries')
+        if len(native) != (6 if newer else 8):
+            raise ValueError('Unexpected original ARM library count for profile')
         for name in native:
             info = archive.getinfo(name)
             length, extra = struct.unpack_from('<HH', raw, info.header_offset + 26)
@@ -162,13 +175,13 @@ def main():
             for name in original.namelist():
                 if name.startswith('assets/') and not name.endswith('/') and original.read(name) != archive.read(name):
                     raise ValueError('Original asset changed: ' + name)
-    record = {'version': '0.1.2', 'package': PACKAGE, 'bytes': len(raw),
+    record = {'version': '7.30.301' if newer else '0.1.2', 'youtubeProfile': args.profile, 'package': PACKAGE, 'bytes': len(raw),
               'optionalPrimesDispatchDisabled': True,
-              'sha256': hashlib.sha256(raw).hexdigest(), 'originalBaseSha256': BASE_HASH,
-              'originalArmSplitSha256': ARM_HASH, 'signatureAndAlignmentVerified': True,
+              'sha256': hashlib.sha256(raw).hexdigest(), 'originalBaseSha256': NEW_BASE_HASH if newer else BASE_HASH,
+              'originalArmSplitSha256': None if newer else ARM_HASH, 'signatureAndAlignmentVerified': True,
               'nativePatch': json.loads((workspace / 'build/native/patch-manifest.json').read_text()),
               'notice': 'Local build checks passed. Not a runtime or complete ad-suppression guarantee.'}
-    record['primesPrivacyPatch'] = json.loads((workspace / 'build/primes-privacy-patch.json').read_text())
+    record['javaPatches' if newer else 'primesPrivacyPatch'] = json.loads((workspace / ('build/java-730301-patches.json' if newer else 'build/primes-privacy-patch.json')).read_text())
     (output / 'build-manifest.json').write_text(json.dumps(record, indent=2), encoding='utf-8')
     print('Built ' + str(signed))
     print('SHA-256 ' + record['sha256'])

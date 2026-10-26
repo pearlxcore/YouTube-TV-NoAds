@@ -1,5 +1,5 @@
 """Create separate derived build tree; no modifications to analyzed original tree."""
-import pathlib, shutil, xml.etree.ElementTree as ET
+import json, pathlib, shutil, xml.etree.ElementTree as ET
 ROOT=pathlib.Path(__file__).resolve().parents[2]
 out=ROOT/'build/apk-work'
 if out.exists(): raise SystemExit('Build tree already exists; reuse it or archive it explicitly.')
@@ -24,6 +24,7 @@ for element in list(app):
 tree.write(path,encoding='utf-8',xml_declaration=True)
 lib=out/'lib/armeabi-v7a'; lib.mkdir(parents=True,exist_ok=True)
 for original in (ROOT/'analysis/native/lib/armeabi-v7a').glob('*.so'): shutil.copy2(original,lib/original.name)
-shutil.copy2(ROOT/'build/native/libcobalt.so',lib/'libcobalt.so')
+native_name = json.loads((ROOT/'build/native/patch-manifest.json').read_text()).get('nativeLibrary', 'libcobalt.so')
+shutil.copy2(ROOT/'build/native'/native_name,lib/native_name)
 with (out/'apktool.yml').open('a') as stream: stream.write('\n- so\n')
 print('Prepared '+str(out)+' package '+new)

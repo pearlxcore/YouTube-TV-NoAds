@@ -1,4 +1,2 @@
-- Disabled one optional Google performance-metrics reporting path.
-- Other telemetry remains; reduced network traffic is unverified.
-- Based on YouTube Android TV **5.30.320 (ARMv7)**.
+- Updated to YouTube Android TV **7.30.301 (ARMv7)** with ad filtering, loading feedback and the About marker.
 - Tested on **Sony Bravia X90H (Android TV 12)**.

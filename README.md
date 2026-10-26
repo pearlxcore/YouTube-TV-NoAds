@@ -3,14 +3,15 @@
 YouTube Android TV with ad-filter patches, the original interface, and its own TV tile.
 
 - **YouTube version:** 7.30.301, ARMv7 (`armeabi-v7a`)
-- **Release:** v7.30.301. Complete ad blocking and compatibility with other TVs are not guaranteed.
+- **Release:** [v7.30.301](https://github.com/pearlxcore/YouTube-TV-NoAds/releases/tag/v7.30.301). Complete ad blocking and compatibility with other TVs are not guaranteed.
 
 [Download the APK](https://github.com/pearlxcore/YouTube-TV-NoAds/releases/download/v7.30.301/youtube-tv-noads-7.30.301.apk) and install it on your TV. No separate launcher or original YouTube installation is required.
 
-| TV model | Status |
-| --- | --- |
-| Sony Bravia X90H — Android TV 12 | Playback, About marker and no ads across several videos verified by user |
-| Other Android TV models | Not verified |
+| TV model | Android TV | Tested release | Status |
+| --- | --- | --- | --- |
+| Sony Bravia X90H | 12 | [v7.30.301](https://github.com/pearlxcore/YouTube-TV-NoAds/releases/tag/v7.30.301) | Playback and About marker work; no ads seen across several videos |
+| TCL P8L | 14 | Not specified | User reports playback works with no ads; minor playback behavior differences |
+| Other models | — | — | Not verified |
 
 Disables one optional performance-metrics reporting path. Other telemetry remains; [privacy details](docs/PRIVACY.md).
 

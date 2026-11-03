@@ -1,5 +1,8 @@
 # YouTube TV NoAds
 
+<img width="320" height="320" alt="noads_icon-source" src="https://github.com/user-attachments/assets/02025e7c-be92-433f-b971-d95aa0535042" />
+
+
 YouTube Android TV with ad-filter patches, the original interface, and its own TV tile.
 
 - **YouTube version:** 7.30.301, ARMv7 (`armeabi-v7a`)

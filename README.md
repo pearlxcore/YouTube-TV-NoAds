@@ -17,12 +17,11 @@ Reported results for the versions and TVs tested.
   </thead>
   <tbody>
     <tr>
-      <td><a href="https://github.com/pearlxcore/YouTube-TV-NoAds/releases/tag/v7.30.301">7.30.301</a></td>
+      <td rowspan="2" valign="top"><a href="https://github.com/pearlxcore/YouTube-TV-NoAds/releases/tag/v7.30.301">7.30.301</a></td>
       <td>Hisense 55U8N</td><td>12</td>
       <td>Working</td>
     </tr>
     <tr>
-      <td><a href="https://github.com/pearlxcore/YouTube-TV-NoAds/releases/tag/v7.30.301">7.30.301</a></td>
       <td>Sony Bravia X90H</td><td>12</td>
       <td>Working</td>
     </tr>

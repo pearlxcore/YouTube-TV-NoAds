@@ -17,7 +17,7 @@ Reported results for the versions and TVs tested.
   </thead>
   <tbody>
     <tr>
-      <td rowspan="2" valign="top"><a href="https://github.com/pearlxcore/YouTube-TV-NoAds/releases/tag/v7.30.301">7.30.301</a></td>
+      <td rowspan="3" valign="top"><a href="https://github.com/pearlxcore/YouTube-TV-NoAds/releases/tag/v7.30.301">7.30.301</a></td>
       <td>Hisense 55U8N</td><td>-</td>
       <td>Working</td>
     </tr>
@@ -26,12 +26,12 @@ Reported results for the versions and TVs tested.
       <td>Working</td>
     </tr>
     <tr>
-      <td rowspan="2" valign="top"><a href="https://github.com/pearlxcore/YouTube-TV-NoAds/releases/tag/v0.1.2">5.30.320</a></td>
-      <td>Sony Bravia X90H</td><td>12</td>
+      <td>TCL P8L</td><td>14</td>
       <td>Working</td>
     </tr>
     <tr>
-      <td>TCL P8L</td><td>14</td>
+      <td valign="top"><a href="https://github.com/pearlxcore/YouTube-TV-NoAds/releases/tag/v0.1.2">5.30.320</a></td>
+      <td>Sony Bravia X90H</td><td>12</td>
       <td>Working</td>
     </tr>
   </tbody>
